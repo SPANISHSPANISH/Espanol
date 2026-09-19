@@ -1,0 +1,81 @@
+-- ======================
+-- CHAPTER SELECTION
+-- ======================
+
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+   Name = "Choose Chapter - Weird Strict Dad",
+   LoadingTitle = "Weird Strict Dad",
+   LoadingSubtitle = "Select Chapter",
+   Theme = "Default",
+   KeySystem = false
+})
+
+local Tab = Window:CreateTab("Chapters", 4483362458)
+
+Tab:CreateSection("Available Chapters")
+
+-- CHAPTER 1
+Tab:CreateButton({
+   Name = "Chapter 1 (Playable)",
+   Callback = function()
+      Window:Destroy()
+      Rayfield:Notify({
+         Title = "Opening Chapter 1",
+         Content = "Hang tight...",
+         Duration = 3
+      })
+      task.wait(0.5)
+      -- REPLACE THE LINK BELOW with your Chapter 1 raw link
+      loadstring(game:HttpGet("PASTE_CHAPTER_1_RAW_LINK_HERE"))()
+   end,
+})
+
+-- CHAPTER 2
+Tab:CreateButton({
+   Name = "Chapter 2 (Under Construction)",
+   Callback = function()
+      Rayfield:Notify({
+         Title = "UNDER CONSTRUCTION!",
+         Content = "This feature is coming soon.",
+         Duration = 4
+      })
+   end,
+})
+
+Tab:CreateSection("Chapter 3 (Locked)")
+
+local Chapter3Pass = ""
+
+Tab:CreateInput({
+   Name = "Enter Passcode for Chapter 3",
+   PlaceholderText = "Passcode...",
+   RemoveTextAfterFocusLost = false,
+   Callback = function(Text)
+      Chapter3Pass = Text
+   end,
+})
+
+Tab:CreateButton({
+   Name = "Verify & Open Chapter 3",
+   Callback = function()
+      if Chapter3Pass == "grokbuilds" then
+         Window:Destroy()
+         Rayfield:Notify({
+            Title = "Opening Chapter 3",
+            Content = "Hang tight...",
+            Duration = 3
+         })
+         task.wait(0.5)
+         -- REPLACE THE LINK BELOW with your Chapter 3 raw link
+         loadstring(game:HttpGet("PASTE_CHAPTER_3_RAW_LINK_HERE"))()
+      else
+         Rayfield:Notify({
+            Title = "Wrong Passcode",
+            Content = "Incorrect passcode",
+            Duration = 3
+         })
+      end
+   end,
+})
