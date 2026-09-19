@@ -1,0 +1,25 @@
+-- ======================
+-- KEY SCRIPT
+-- ======================
+
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+   Name = "Weird Strict Dad",
+   LoadingTitle = "Weird Strict Dad",
+   LoadingSubtitle = "Key System",
+   Theme = "Default",
+   KeySystem = true,
+   KeySettings = {
+      Title = "Weird Strict Dad",
+      Subtitle = "Enter the Key",
+      Note = "Key is case sensitive",
+      FileName = "WSD_Key",
+      SaveKey = true,
+      Key = {"chrisKEY"}
+   }
+})
+
+-- After correct key → load Chapter Selection
+-- REPLACE THE LINK BELOW with your Chapter Selection raw link
+loadstring(game:HttpGet("PASTE_CHAPTER_SELECTION_RAW_LINK_HERE"))()
