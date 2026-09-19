@@ -1,0 +1,22 @@
+-- ======================
+-- CHAPTER 3
+-- ======================
+
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+   Name = "Weird Strict Dad - Chapter 3",
+   LoadingTitle = "Chapter 3",
+   LoadingSubtitle = "Coming Soon",
+   Theme = "Default",
+   KeySystem = false
+})
+
+local Tab = Window:CreateTab("Chapter 3", 4483362458)
+
+Tab:CreateSection("Status")
+
+Tab:CreateParagraph({
+   Title = "Chapter 3",
+   Content = "This will be built soon! Get ready.\n\nNew systems and features are coming."
+})
