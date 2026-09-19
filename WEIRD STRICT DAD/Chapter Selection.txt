@@ -28,7 +28,7 @@ Tab:CreateButton({
       })
       task.wait(0.5)
       -- REPLACE THE LINK BELOW with your Chapter 1 raw link
-      loadstring(game:HttpGet("PASTE_CHAPTER_1_RAW_LINK_HERE"))()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/ZawareScripts/Zaware/refs/heads/main/WEIRD%20STRICT%20DAD/Chapter%201.txt?token=GHSAT0AAAAAAEJSLO6YKNH5P662WF46BCUK2VPEIPQ"))()
    end,
 })
 
