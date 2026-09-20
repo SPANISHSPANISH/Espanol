@@ -69,7 +69,7 @@ Tab:CreateButton({
          })
          task.wait(0.5)
          -- REPLACE THE LINK BELOW with your Chapter 3 raw link
-         loadstring(game:HttpGet("PASTE_CHAPTER_3_RAW_LINK_HERE"))()
+         loadstring(game:HttpGet("https://raw.githubusercontent.com/ZawareScripts/Zaware/refs/heads/main/WEIRD%20STRICT%20DAD/Chapter%203.txt?token=GHSAT0AAAAAAEJSLO6YQUYTGQOZ3IJ4DPZO2VPEILA"))()
       else
          Rayfield:Notify({
             Title = "Wrong Passcode",
