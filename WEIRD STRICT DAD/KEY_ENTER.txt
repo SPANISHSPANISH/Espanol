@@ -1,25 +1,25 @@
 -- ======================
+-- Zaware Hub - Weird Strict Dad
 -- KEY SCRIPT
 -- ======================
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "Weird Strict Dad",
-   LoadingTitle = "Weird Strict Dad",
-   LoadingSubtitle = "Key System",
+   Name = "Zaware Hub - Weird Strict Dad",
+   LoadingTitle = "Zaware Hub",
+   LoadingSubtitle = "Weird Strict Dad",
    Theme = "Default",
    KeySystem = true,
    KeySettings = {
-      Title = "Weird Strict Dad",
+      Title = "Zaware Hub - Weird Strict Dad",
       Subtitle = "Enter the Key",
       Note = "Key is case sensitive",
-      FileName = "WSD_Key",
+      FileName = "ZawareWSD_Key",
       SaveKey = true,
       Key = {"chrisKEY"}
    }
 })
 
 -- After correct key → load Chapter Selection
--- REPLACE THE LINK BELOW with your Chapter Selection raw link
-loadstring(game:HttpGet("https://raw.githubusercontent.com/ZawareScripts/Zaware/refs/heads/main/WEIRD%20STRICT%20DAD/Chapter%20Selection.txt?token=GHSAT0AAAAAAEJSLO6YLZJWPHGCI4OSQ4LY2VPEH2A"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ZawareScripts/Zaware/refs/heads/main/WEIRD%20STRICT%20DAD/Chapter%20Selection.txt?token=GHSAT0AAAAAAEJSLO6Z2FYAZF4FDJBHPYJO2VPEMAA"))()
