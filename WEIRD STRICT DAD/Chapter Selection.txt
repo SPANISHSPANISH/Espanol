@@ -1,12 +1,13 @@
 -- ======================
--- CHAPTER SELECTION
+-- Zaware Hub - Weird Strict Dad
+-- CHAPTER SELECTION (FIXED)
 -- ======================
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "Choose Chapter - Weird Strict Dad",
-   LoadingTitle = "Weird Strict Dad",
+   Name = "Zaware Hub - Weird Strict Dad",
+   LoadingTitle = "Zaware Hub",
    LoadingSubtitle = "Select Chapter",
    Theme = "Default",
    KeySystem = false
@@ -20,15 +21,17 @@ Tab:CreateSection("Available Chapters")
 Tab:CreateButton({
    Name = "Chapter 1 (Playable)",
    Callback = function()
-      Window:Destroy()
-      Rayfield:Notify({
-         Title = "Opening Chapter 1",
-         Content = "Hang tight...",
-         Duration = 3
-      })
-      task.wait(0.5)
-      -- REPLACE THE LINK BELOW with your Chapter 1 raw link
-      loadstring(game:HttpGet("https://raw.githubusercontent.com/ZawareScripts/Zaware/refs/heads/main/WEIRD%20STRICT%20DAD/Chapter%201.txt?token=GHSAT0AAAAAAEJSLO6YKNH5P662WF46BCUK2VPEIPQ"))()
+      task.spawn(function()
+         Rayfield:Notify({
+            Title = "Opening Chapter 1",
+            Content = "Hang tight...",
+            Duration = 3
+         })
+         task.wait(0.4)
+         Window:Destroy()
+         task.wait(0.3)
+         loadstring(game:HttpGet("https://raw.githubusercontent.com/ZawareScripts/Zaware/refs/heads/main/WEIRD%20STRICT%20DAD/Chapter%201.txt?token=GHSAT0AAAAAAEJSLO6YKNH5P662WF46BCUK2VPEIPQ"))()
+      end)
    end,
 })
 
@@ -61,15 +64,17 @@ Tab:CreateButton({
    Name = "Verify & Open Chapter 3",
    Callback = function()
       if Chapter3Pass == "grokbuilds" then
-         Window:Destroy()
-         Rayfield:Notify({
-            Title = "Opening Chapter 3",
-            Content = "Hang tight...",
-            Duration = 3
-         })
-         task.wait(0.5)
-         -- REPLACE THE LINK BELOW with your Chapter 3 raw link
-         loadstring(game:HttpGet("https://raw.githubusercontent.com/ZawareScripts/Zaware/refs/heads/main/WEIRD%20STRICT%20DAD/Chapter%203.txt?token=GHSAT0AAAAAAEJSLO6YQUYTGQOZ3IJ4DPZO2VPEILA"))()
+         task.spawn(function()
+            Rayfield:Notify({
+               Title = "Opening Chapter 3",
+               Content = "Hang tight...",
+               Duration = 3
+            })
+            task.wait(0.4)
+            Window:Destroy()
+            task.wait(0.3)
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/ZawareScripts/Zaware/refs/heads/main/WEIRD%20STRICT%20DAD/Chapter%203.txt?token=GHSAT0AAAAAAEJSLO6YQUYTGQOZ3IJ4DPZO2VPEILA"))()
+         end)
       else
          Rayfield:Notify({
             Title = "Wrong Passcode",
