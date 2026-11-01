@@ -114,6 +114,9 @@ body[data-close=left] #close{left:2vw}body[data-close=right] #close{right:2vw}
 .duo{display:flex;flex-wrap:wrap;gap:3vmin;align-items:center;justify-content:center;margin-top:3vh}
 .duo .course{width:min(88vw,500px);height:min(24vh,210px);margin-top:0}
 .duo .fam{font-size:clamp(4rem,11vw,9rem)}
+.ageRow{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:center;gap:2.5vmin;font-weight:800;font-size:clamp(2.2rem,6.5vw,5.5rem);letter-spacing:-.02em;margin-top:1vh}
+.card small{display:block;font-size:clamp(1rem,2.2vw,1.6rem);font-weight:500;opacity:.9;margin-bottom:.4em}
+.bignum{display:block;font-style:normal;font-size:clamp(3.5rem,10vw,8rem);line-height:1;color:var(--sun)}
 .me.sm{height:clamp(110px,20vh,230px)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01s!important}}
 </style>
@@ -128,7 +131,6 @@ body[data-close=left] #close{left:2vw}body[data-close=right] #close{right:2vw}
 <section class="screen on" id="menu">
   <div class="logo">👋</div>
   <h1 class="title"><span>Chris</span> <span data-t="word">Presentation</span></h1>
-  <p data-t="tag">A fun, animated way to get to know me!</p>
   <div class="row">
     <button class="btn big" id="start" data-t="start">▶ Start Presentation</button>
     <button class="btn ghost" id="openSet" data-t="settings">⚙️ Settings</button>
@@ -175,23 +177,19 @@ body[data-close=left] #close{left:2vw}body[data-close=right] #close{right:2vw}
 </section>
 <section class="slide" data-s>
   <h1 class="shine" data-t="s1">Hi, I'm Chris!</h1>
-  <p data-t="s1p">Welcome to my presentation. Get ready to meet me!</p>
   <img class="gif" data-gif="hi" alt="Hi">
 </section>
 <section class="slide" data-s>
   <h2 data-t="sLook">Así me veo yo 😎</h2>
   <div class="meBox"><img class="me big" src="https://github.com/SPANISHSPANISH/Espanol/blob/main/IMG_1804-removebg-preview.png?raw=true" alt="Chris" onerror="this.parentNode.innerHTML='<div class=fam>🙂</div>'"></div>
-  <p data-t="sLookP">¡Sí, ese soy yo! Mucho gusto.</p>
 </section>
 <section class="slide" data-s data-age>
   <div class="meBox"><img class="me sm" src="https://github.com/SPANISHSPANISH/Espanol/blob/main/IMG_1804-removebg-preview.png?raw=true" alt="Chris" onerror="this.parentNode.remove()"></div>
-  <p data-t="s2a">I am</p><div class="age" id="age">0</div><h2 data-t="s2b">years old 🎂</h2>
-  <div class="chips"><span class="chip" data-t="c1">😄 Fun</span><span class="chip" data-t="c2">🧠 Curious</span><span class="chip" data-t="c3">💡 Full of ideas</span></div>
+  <div class="ageRow"><span data-t="s2a">I am</span><span class="age" id="age">0</span><span data-t="s2b">years old 🎂</span></div>
 </section>
 <section class="slide" data-s>
   <div class="duo"><svg class="flagsvg" viewBox="0 0 190 100" role="img" aria-label="USA flag"><rect width="190" height="100" fill="#b22234"/><g id="stripes" fill="#fff"></g><rect width="76" height="53.85" fill="#3c3b6e"/><g id="stars" fill="#fff"></g></svg><img class="gif" data-gif="usa" alt="USA"></div>
   <h2 data-t="s3">I'm from <span class="sun">America</span></h2>
-  <p data-t="s3p">I live in the United States, and it's my favorite place in the whole world!</p>
 </section>
 <section class="slide" data-s>
   <h2 data-t="s4">This is <span class="mint">my house</span> 🏡</h2>
@@ -204,22 +202,32 @@ body[data-close=left] #close{left:2vw}body[data-close=right] #close{right:2vw}
     <div class="vs"><img class="gif sm" data-gif="taco" alt="Tacos"></div>
     <div class="card"><b>🌮</b><span data-t="tacos">Tacos</span></div>
   </div>
-  <p data-t="s5p">I can't pick just one!</p>
 </section>
 <section class="slide" data-s>
   <h2 data-t="s6">I love playing <span class="sun">golf</span> ⛳</h2>
   <div class="duo"><div class="course"><div class="hole"></div><div class="flagp">🚩</div><div class="ball"></div></div><img class="gif" data-gif="golf" alt="Golf"></div>
-  <p data-t="s6p">Every swing is a new chance for a hole-in-one! 🏌️</p>
+</section>
+<section class="slide" data-s>
+  <h2 data-t="sF1">Mis cosas favoritas ⭐</h2>
+  <div class="cards">
+    <div class="card" style="background:linear-gradient(135deg,rgba(79,172,254,.4),rgba(94,242,120,.4))"><b>🎨</b><small data-t="lColor">Mi color favorito</small><span data-t="vColor">Azul y verde</span></div>
+    <div class="card"><b>🍀</b><small data-t="lNum">Mi número de la suerte</small><span data-t="vNum"><em class="bignum">90</em>noventa</span></div>
+  </div>
+</section>
+<section class="slide" data-s>
+  <h2 data-t="sF2">Más sobre mí ✨</h2>
+  <div class="cards">
+    <div class="card"><b>🏝️</b><small data-t="lTrip">Mi lugar favorito para viajar</small><span data-t="vTrip">Aruba</span></div>
+    <div class="card"><b>🎂</b><small data-t="lBday">Mi cumpleaños</small><span data-t="vBday">11 de agosto</span></div>
+  </div>
 </section>
 <section class="slide" data-s>
   <div class="duo"><div class="fam">👨‍👩‍👧‍👦</div><img class="gif" data-gif="fam" alt="Family"></div>
   <h2 data-t="s7">Family is <span class="pink">everything</span> 💛</h2>
-  <p data-t="s7p">I enjoy spending time with my family. They make every day better.</p>
 </section>
 <section class="slide" data-s data-end>
   <img class="gif" data-gif="hi" alt="Bye">'"></div>
   <h1 class="shine" data-t="s8">Thank you!</h1>
-  <p data-t="s8p">Now it's your turn. Tell me all about you! 🎉</p>
   <div class="row"><button class="btn" id="again" data-t="again">🔁 Watch again</button><button class="btn ghost back" data-t="menu">🏠 Menu</button></div>
 </section>
 
@@ -230,22 +238,23 @@ const AGE=12; /* ✏️ change your age here */
 const T={
 en:{word:"Presentation",tag:"A fun, animated way to get to know me!",start:"▶ Start Presentation",settings:"⚙️ Settings",how:"❓ How it works",
 lLang:"🌎 Presentation language",lMode:"🎬 How do you want to present?",mClick:"👆 I click next",mAuto:"⏱️ Auto-play",lSpeed:"⚡ Auto-play speed",slow:"🐢 Slow",normal:"🚶 Normal",fast:"🚀 Fast",lTheme:"🎨 Color theme",lFx:"✨ Floating emojis and effects",on:"✅ On",off:"🚫 Off",back:"⬅ Back",
-h1:"Pick your language and style in Settings.",h2:"Press Start Presentation. It starts in English by default.",h3:"Click the arrows, press the keyboard arrows or Space, or swipe on a phone. Auto-play does it for you!",h4:"Press F for full screen and Esc to go back to the menu.",
+h1:"Pick your language and style in Settings.",h2:"Press Start Presentation. It starts in Spanish, but you can change it to English in Settings.",h3:"Click the arrows, press the keyboard arrows or Space, or swipe on a phone. Auto-play does it for you!",h4:"Press F for full screen and Esc to go back to the menu.",
 s1:"Hi, I'm Chris!",s1p:"Welcome to my presentation. Get ready to meet me!",s2a:"I am",s2b:"years old 🎂",c1:"😄 Fun",c2:"🧠 Curious",c3:"💡 Full of ideas",
 s3:"I'm from <span class='sun'>America</span>",s3p:"I live in the United States, and it's my favorite place in the whole world!",
 s4:"This is <span class='mint'>my house</span> 🏡",s5:"My favorite food 😋",pizza:"Pizza",tacos:"Tacos",s5p:"I can't pick just one!",
 s6:"I love playing <span class='sun'>golf</span> ⛳",s6p:"Every swing is a new chance for a hole-in-one! 🏌️",
 s7:"Family is <span class='pink'>everything</span> 💛",s7p:"I enjoy spending time with my family. They make every day better.",
-s8:"Thank you!",s8p:"Now it's your turn. Tell me all about you! 🎉",again:"🔁 Watch again",menu:"🏠 Menu",lClose:"❌ Close button position",left:"⬅ Left",right:"Right ➡",ld:"Loading...",ld1:"Getting ready…",ld2:"Loading the fun…",ld3:"Almost there!",sLook:"This is what I look like 😎",sLookP:"Yep, that's me! Nice to meet you."},
-es:{word:"Presentación",tag:"¡Una forma divertida y animada de conocerme!",start:"▶ Iniciar presentación",settings:"⚙️ Ajustes",how:"❓ Cómo funciona",
-lLang:"🌎 Idioma de la presentación",lMode:"🎬 ¿Cómo quieres presentar?",mClick:"👆 Yo hago clic",mAuto:"⏱️ Automático",lSpeed:"⚡ Velocidad automática",slow:"🐢 Lenta",normal:"🚶 Normal",fast:"🚀 Rápida",lTheme:"🎨 Color del tema",lFx:"✨ Emojis flotantes y efectos",on:"✅ Sí",off:"🚫 No",back:"⬅ Volver",
-h1:"Elige tu idioma y tu estilo en Ajustes.",h2:"Presiona Iniciar presentación. Por defecto empieza en inglés.",h3:"Haz clic en las flechas, usa las flechas del teclado o la barra espaciadora, o desliza el dedo en el celular. ¡El modo automático lo hace por ti!",h4:"Presiona F para pantalla completa y Esc para volver al menú.",
-s1:"¡Hola, soy Chris!",s1p:"Bienvenidos a mi presentación. ¡Prepárense para conocerme!",s2a:"Tengo",s2b:"años 🎂",c1:"😄 Divertido",c2:"🧠 Curioso",c3:"💡 Lleno de ideas",
-s3:"Soy de <span class='sun'>Estados Unidos</span>",s3p:"Vivo en Estados Unidos, ¡y es mi lugar favorito de todo el mundo!",
-s4:"Esta es <span class='mint'>mi casa</span> 🏡",s5:"Mi comida favorita 😋",pizza:"Pizza",tacos:"Tacos",s5p:"¡No puedo elegir solo una!",
-s6:"Me encanta jugar <span class='sun'>golf</span> ⛳",s6p:"¡Cada golpe es una nueva oportunidad de hacer un hoyo en uno! 🏌️",
-s7:"La familia es <span class='pink'>todo</span> 💛",s7p:"Disfruto pasar tiempo con mi familia. Ellos hacen cada día mejor.",
-s8:"¡Gracias!",s8p:"Ahora te toca a ti. ¡Cuéntame todo sobre ti! 🎉",again:"🔁 Ver otra vez",menu:"🏠 Menú",lClose:"❌ Posición del botón de cerrar",left:"⬅ Izquierda",right:"Derecha ➡",ld:"Cargando...",ld1:"Preparando todo…",ld2:"Cargando la diversión…",ld3:"¡Casi listo!",sLook:"Así me veo yo 😎",sLookP:"¡Sí, ese soy yo! Mucho gusto."}};
+s8:"Thank you!",s8p:"Now it's your turn. Tell me all about you! 🎉",again:"🔁 Watch again",menu:"🏠 Menu",lClose:"❌ Close button position",left:"⬅ Left",right:"Right ➡",ld:"Loading...",ld1:"Getting ready…",ld2:"Loading the fun…",ld3:"Almost there!",sF1:"My favorite things ⭐",sF2:"More about me ✨",lColor:"My favorite color",vColor:"Blue and green",lNum:"My lucky number",vNum:"<em class='bignum'>90</em>ninety",lTrip:"My favorite place to travel",vTrip:"Aruba",lBday:"My birthday",vBday:"August 11",sLook:"This is what I look like 😎",sLookP:"Yep, that's me! Nice to meet you."},
+es:{word:"Presentación",start:"▶ Empezar",settings:"⚙️ Opciones",how:"❓ Cómo funciona",
+lLang:"🌎 Idioma",lMode:"🎬 ¿Cómo quieres verla?",mClick:"👆 Con clic",mAuto:"⏱️ Automático",lSpeed:"⚡ Velocidad",slow:"🐢 Lenta",normal:"🚶 Normal",fast:"🚀 Rápida",lTheme:"🎨 Color",lFx:"✨ Emojis",on:"✅ Sí",off:"🚫 No",back:"⬅ Volver",
+h1:"Elige el idioma en Opciones.",h2:"Presiona Empezar. Empieza en español. Puedes cambiar a inglés en Opciones.",h3:"Usa las flechas o desliza con el dedo.",h4:"Presiona F para pantalla completa. Presiona Esc para salir.",
+s1:"¡Hola, soy Chris!",s2a:"Tengo",s2b:"años 🎂",
+s3:"Soy de <span class='sun'>Estados Unidos</span>",
+s4:"Esta es <span class='mint'>mi casa</span> 🏡",s5:"Mi comida favorita 😋",pizza:"Pizza",tacos:"Tacos",
+s6:"Me gusta el <span class='sun'>golf</span> ⛳",
+s7:"Amo a mi <span class='pink'>familia</span> 💛",
+s8:"¡Gracias!",again:"🔁 Otra vez",menu:"🏠 Menú",lClose:"❌ Botón X",left:"⬅ Izquierda",right:"Derecha ➡",ld:"Cargando...",ld1:"Preparando…",ld2:"Cargando…",ld3:"¡Casi listo!",sLook:"Así me veo 😎",
+sF1:"Mis cosas favoritas ⭐",sF2:"Más sobre mí ✨",lColor:"Mi color favorito",vColor:"Azul y verde",lNum:"Mi número de la suerte",vNum:"<em class='bignum'>90</em>noventa",lTrip:"Mi lugar favorito para viajar",vTrip:"Aruba",lBday:"Mi cumpleaños",vBday:"11 de agosto"}};
 const S={lang:"es",mode:"click",speed:"9",theme:"night",fx:"on",close:"right"};
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const slides=$$("[data-s]");let i=0,auto,cnt,ld;
