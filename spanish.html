@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yo soy yo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f1738;--bg2:#1b2a6b;--sun:#ffd23f;--pink:#ff5d8f;--mint:#5ef2c8;--ink:#f6f7ff}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,sans-serif}
+.blob{position:fixed;border-radius:50%;filter:blur(70px);opacity:.45;z-index:0;animation:float 14s ease-in-out infinite}
+.b1{width:46vmax;height:46vmax;background:var(--bg2);top:-15vmax;left:-10vmax}
+.b2{width:34vmax;height:34vmax;background:var(--pink);bottom:-14vmax;right:-8vmax;opacity:.28;animation-delay:-5s}
+.b3{width:24vmax;height:24vmax;background:var(--mint);top:30%;left:55%;opacity:.14;animation-delay:-9s}
+@keyframes float{50%{transform:translate(4vmax,-3vmax) scale(1.12)}}
+.slide{position:fixed;inset:0;z-index:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:6vmin 8vw;opacity:0;visibility:hidden;transform:scale(.96) translateY(3vh);transition:opacity .7s,transform .7s,visibility .7s}
+.slide.on{opacity:1;visibility:visible;transform:none}
+h1{font-weight:800;font-size:clamp(3.5rem,15vw,13rem);line-height:.9;letter-spacing:-.04em}
+h2{font-weight:800;font-size:clamp(2.4rem,7vw,6rem);line-height:1;letter-spacing:-.03em}
+p{font-size:clamp(1.3rem,3.2vw,2.6rem);font-weight:500;max-width:22em;margin-top:2vh;line-height:1.25}
+.sun{color:var(--sun)}.pink{color:var(--pink)}.mint{color:var(--mint)}
+.s1.on h1 span{animation:pop .9s cubic-bezier(.2,1.4,.4,1) both}
+.s1 h1 span:nth-child(2){animation-delay:.18s;color:var(--sun)}
+.s1 h1 span:nth-child(3){animation-delay:.36s;color:var(--pink)}
+@keyframes pop{from{opacity:0;transform:translateY(60px) rotate(-6deg) scale(.7)}}
+.hello{display:inline-block;margin-top:3vh;padding:.5em 1.4em;border-radius:99px;background:var(--sun);color:var(--bg);font-weight:800;font-size:clamp(1.1rem,2.6vw,2rem);animation:wiggle 3s ease-in-out infinite}
+@keyframes wiggle{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg) scale(1.05)}}
+.age{font-weight:800;font-size:clamp(9rem,40vw,30rem);line-height:.85;letter-spacing:-.06em;color:var(--sun);text-shadow:0 0 80px rgba(255,210,63,.45)}
+.chips{display:flex;flex-wrap:wrap;gap:1.2vmin;justify-content:center;margin-top:4vh}
+.chip{padding:.5em 1.2em;border-radius:99px;border:2px solid var(--mint);color:var(--mint);font-weight:800;font-size:clamp(1.1rem,2.6vw,2rem)}
+.s2.on .chip{animation:pop .7s both}.s2 .chip:nth-child(2){animation-delay:.15s}.s2 .chip:nth-child(3){animation-delay:.3s}
+.pin{font-size:clamp(5rem,16vw,12rem);animation:bounce 1.6s ease-in-out infinite}
+@keyframes bounce{50%{transform:translateY(-3vh)}}
+.frame{position:relative;width:min(88vw,125vh*.9);aspect-ratio:4/3;max-height:62vh;margin-top:3vh;border-radius:28px;overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.55),0 0 0 6px rgba(255,255,255,.12);background:linear-gradient(135deg,var(--bg2),var(--pink));display:flex;align-items:center;justify-content:center;font-size:clamp(4rem,12vw,9rem)}
+.frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.15);transition:transform 6s ease-out}
+.s4.on .frame img{transform:scale(1)}
+.s4 h2{font-size:clamp(2rem,5.5vw,4.5rem)}
+.fav{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2vmin;width:min(92vw,1100px);margin-top:4vh}
+.card{padding:3vmin;border-radius:24px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(8px)}
+.card b{display:block;font-size:clamp(2.5rem,6vw,4.5rem)}
+.card span{font-size:clamp(1.1rem,2.4vw,1.8rem);font-weight:500}
+.s5.on .card{animation:pop .7s both}.s5 .card:nth-child(2){animation-delay:.15s}.s5 .card:nth-child(3){animation-delay:.3s}
+nav{position:fixed;bottom:2.5vh;left:0;right:0;z-index:5;display:flex;justify-content:center;align-items:center;gap:2vw}
+nav button{width:clamp(52px,7vmin,72px);height:clamp(52px,7vmin,72px);border-radius:50%;border:0;background:var(--sun);color:var(--bg);font-size:1.8rem;font-weight:800;cursor:pointer;transition:transform .2s}
+nav button:hover{transform:scale(1.12)}nav button:focus-visible{outline:4px solid var(--mint);outline-offset:3px}
+#count{font-weight:800;font-size:1.2rem;min-width:4em;text-align:center}
+#bar{position:fixed;top:0;left:0;height:8px;background:linear-gradient(90deg,var(--sun),var(--pink));z-index:6;transition:width .6s;width:0}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01s!important}}
+</style>
+</head>
+<body>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+<div id="bar"></div>
+
+<section class="slide s1 on">
+  <h1><span>Yo</span> <span>soy</span> <span>yo</span></h1>
+  <div class="hello">¡Hola! Me llamo <span id="nombre">[TU NOMBRE]</span></div>
+</section>
+
+<section class="slide s2">
+  <p>Tengo</p>
+  <div class="age" id="edad">0</div>
+  <h2>años</h2>
+  <div class="chips"><span class="chip">Curioso/a</span><span class="chip">Divertido/a</span><span class="chip">Con muchas ideas</span></div>
+</section>
+
+<section class="slide s3">
+  <div class="pin">📍</div>
+  <h2>Soy de <span class="sun" id="ciudad">[TU CIUDAD]</span></h2>
+  <p>Vivo en <span class="pink" id="pais">[TU PAÍS]</span>. ¡Es mi lugar favorito del mundo!</p>
+</section>
+
+<section class="slide s4">
+  <h2>Así es <span class="mint">mi casa</span> 🏡</h2>
+  <div class="frame">🏠<img src="https://p.rdcpix.com/v02/lbc78b744-m0rd-w960_h720.webp" alt="Foto de mi casa" onerror="this.remove()"></div>
+</section>
+
+<section class="slide s5">
+  <h2>Lo que más me gusta</h2>
+  <div class="fav">
+    <div class="card"><b>🎮</b><span id="f1">Mi pasatiempo</span></div>
+    <div class="card"><b>🍕</b><span id="f2">Mi comida favorita</span></div>
+    <div class="card"><b>⚽</b><span id="f3">Mi deporte o juego</span></div>
+  </div>
+</section>
+
+<section class="slide s6">
+  <h1 class="sun">¡Gracias!</h1>
+  <p>Gracias por conocerme, primo/a. <span class="pink">¡Ahora cuéntame de ti!</span> 💛</p>
+</section>
+
+<nav><button id="prev" aria-label="Anterior">‹</button><div id="count"></div><button id="next" aria-label="Siguiente">›</button></nav>
+
+<script>
+/* ✏️ EDITA AQUÍ TUS DATOS */
+const DATOS={nombre:"[TU NOMBRE]",edad:12,ciudad:"[TU CIUDAD]",pais:"[TU PAÍS]",
+ f1:"Mi pasatiempo",f2:"Mi comida favorita",f3:"Mi deporte o juego"};
+["nombre","ciudad","pais","f1","f2","f3"].forEach(k=>document.getElementById(k).textContent=DATOS[k]);
+
+const slides=[...document.querySelectorAll(".slide")];let i=0,timer;
+function countUp(){const el=document.getElementById("edad");clearInterval(timer);let n=0;el.textContent=0;
+ timer=setInterval(()=>{n++;el.textContent=n;if(n>=DATOS.edad)clearInterval(timer)},90)}
+function go(n){i=Math.max(0,Math.min(slides.length-1,n));
+ slides.forEach((s,k)=>s.classList.toggle("on",k===i));
+ document.getElementById("count").textContent=(i+1)+" / "+slides.length;
+ document.getElementById("bar").style.width=((i+1)/slides.length*100)+"%";
+ if(i===1)countUp()}
+document.getElementById("next").onclick=()=>go(i+1);
+document.getElementById("prev").onclick=()=>go(i-1);
+addEventListener("keydown",e=>{if(["ArrowRight"," ","PageDown"].includes(e.key))go(i+1);if(["ArrowLeft","PageUp"].includes(e.key))go(i-1);if(e.key==="f")document.documentElement.requestFullscreen?.()});
+let x0;addEventListener("touchstart",e=>x0=e.touches[0].clientX);
+addEventListener("touchend",e=>{const d=e.changedTouches[0].clientX-x0;if(Math.abs(d)>50)go(i+(d<0?1:-1))});
+go(0);
+</script>
+</body>
+</html>
