@@ -1,118 +1,296 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Yo soy yo</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<title>Chris Presentation</title>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0f1738;--bg2:#1b2a6b;--sun:#ffd23f;--pink:#ff5d8f;--mint:#5ef2c8;--ink:#f6f7ff}
+:root{--bg:#0f1738;--bg2:#1b2a6b;--sun:#ffd23f;--pink:#ff5d8f;--mint:#5ef2c8;--ink:#f6f7ff;--sp:1}
+body[data-theme=sunset]{--bg:#2a0f2e;--bg2:#7a1f5c;--sun:#ffb347;--pink:#ff6b6b;--mint:#ffe0a3}
+body[data-theme=ocean]{--bg:#06223a;--bg2:#0b5d8a;--sun:#7df9ff;--pink:#4facfe;--mint:#b6ffea}
+body[data-theme=forest]{--bg:#0d2a1c;--bg2:#1d6b3f;--sun:#d6ff5c;--pink:#ff9f5a;--mint:#7dffb0}
 *{box-sizing:border-box;margin:0}
-html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,sans-serif}
-.blob{position:fixed;border-radius:50%;filter:blur(70px);opacity:.45;z-index:0;animation:float 14s ease-in-out infinite}
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,sans-serif;transition:background .6s}
+button{font:inherit;cursor:pointer}
+.blob{position:fixed;border-radius:50%;filter:blur(70px);opacity:.45;animation:float 14s ease-in-out infinite;transition:background .6s}
 .b1{width:46vmax;height:46vmax;background:var(--bg2);top:-15vmax;left:-10vmax}
 .b2{width:34vmax;height:34vmax;background:var(--pink);bottom:-14vmax;right:-8vmax;opacity:.28;animation-delay:-5s}
 .b3{width:24vmax;height:24vmax;background:var(--mint);top:30%;left:55%;opacity:.14;animation-delay:-9s}
 @keyframes float{50%{transform:translate(4vmax,-3vmax) scale(1.12)}}
-.slide{position:fixed;inset:0;z-index:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:6vmin 8vw;opacity:0;visibility:hidden;transform:scale(.96) translateY(3vh);transition:opacity .7s,transform .7s,visibility .7s}
-.slide.on{opacity:1;visibility:visible;transform:none}
-h1{font-weight:800;font-size:clamp(3.5rem,15vw,13rem);line-height:.9;letter-spacing:-.04em}
-h2{font-weight:800;font-size:clamp(2.4rem,7vw,6rem);line-height:1;letter-spacing:-.03em}
-p{font-size:clamp(1.3rem,3.2vw,2.6rem);font-weight:500;max-width:22em;margin-top:2vh;line-height:1.25}
+#emojis span{position:fixed;bottom:-12vh;animation:rise linear infinite;opacity:.5;pointer-events:none}
+body.nofx #emojis,body.nofx .blob{display:none}
+@keyframes rise{to{transform:translateY(-120vh) rotate(360deg)}}
+/* screens */
+.screen,.slide{position:fixed;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:5vmin 7vw;opacity:0;visibility:hidden;transform:scale(.95) translateY(3vh);transition:opacity .6s,transform .6s,visibility .6s}
+.screen.on,.slide.on{opacity:1;visibility:visible;transform:none}
+h1{font-weight:800;font-size:clamp(3rem,13vw,11rem);line-height:.9;letter-spacing:-.04em}
+h2{font-weight:800;font-size:clamp(2.2rem,6.5vw,5.5rem);line-height:1;letter-spacing:-.03em}
+p{font-size:clamp(1.2rem,2.9vw,2.4rem);font-weight:500;max-width:24em;margin-top:2vh;line-height:1.25}
 .sun{color:var(--sun)}.pink{color:var(--pink)}.mint{color:var(--mint)}
-.s1.on h1 span{animation:pop .9s cubic-bezier(.2,1.4,.4,1) both}
-.s1 h1 span:nth-child(2){animation-delay:.18s;color:var(--sun)}
-.s1 h1 span:nth-child(3){animation-delay:.36s;color:var(--pink)}
+.btn{padding:.7em 1.8em;border-radius:99px;border:0;background:var(--sun);color:var(--bg);font-weight:800;font-size:clamp(1.1rem,2.4vw,1.8rem);transition:transform .2s,box-shadow .2s;box-shadow:0 8px 0 rgba(0,0,0,.25)}
+.btn:hover{transform:translateY(-4px) scale(1.04)}.btn:active{transform:translateY(4px);box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.btn.ghost{background:rgba(255,255,255,.1);color:var(--ink);box-shadow:inset 0 0 0 2px rgba(255,255,255,.3)}
+.btn.big{font-size:clamp(1.5rem,4vw,3rem);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 8px 0 rgba(0,0,0,.25),0 0 0 14px rgba(255,210,63,.18)}}
+button:focus-visible{outline:4px solid var(--mint);outline-offset:3px}
+.row{display:flex;flex-wrap:wrap;gap:2vmin;justify-content:center;margin-top:4vh}
+.logo{font-size:clamp(5rem,14vw,10rem);animation:bounce 1.8s ease-in-out infinite}
+@keyframes bounce{50%{transform:translateY(-3vh) rotate(6deg)}}
+.pop{animation:pop .8s cubic-bezier(.2,1.4,.4,1) both}
 @keyframes pop{from{opacity:0;transform:translateY(60px) rotate(-6deg) scale(.7)}}
-.hello{display:inline-block;margin-top:3vh;padding:.5em 1.4em;border-radius:99px;background:var(--sun);color:var(--bg);font-weight:800;font-size:clamp(1.1rem,2.6vw,2rem);animation:wiggle 3s ease-in-out infinite}
-@keyframes wiggle{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg) scale(1.05)}}
-.age{font-weight:800;font-size:clamp(9rem,40vw,30rem);line-height:.85;letter-spacing:-.06em;color:var(--sun);text-shadow:0 0 80px rgba(255,210,63,.45)}
-.chips{display:flex;flex-wrap:wrap;gap:1.2vmin;justify-content:center;margin-top:4vh}
-.chip{padding:.5em 1.2em;border-radius:99px;border:2px solid var(--mint);color:var(--mint);font-weight:800;font-size:clamp(1.1rem,2.6vw,2rem)}
-.s2.on .chip{animation:pop .7s both}.s2 .chip:nth-child(2){animation-delay:.15s}.s2 .chip:nth-child(3){animation-delay:.3s}
-.pin{font-size:clamp(5rem,16vw,12rem);animation:bounce 1.6s ease-in-out infinite}
-@keyframes bounce{50%{transform:translateY(-3vh)}}
-.frame{position:relative;width:min(88vw,125vh*.9);aspect-ratio:4/3;max-height:62vh;margin-top:3vh;border-radius:28px;overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.55),0 0 0 6px rgba(255,255,255,.12);background:linear-gradient(135deg,var(--bg2),var(--pink));display:flex;align-items:center;justify-content:center;font-size:clamp(4rem,12vw,9rem)}
+.title span{display:inline-block}
+.on .title span{animation:pop .9s cubic-bezier(.2,1.4,.4,1) both}
+.title span:nth-child(2){animation-delay:.2s!important;color:var(--sun)}
+/* panels */
+.panel{width:min(94vw,820px);max-height:76vh;overflow:auto;margin-top:3vh;text-align:left;display:grid;gap:2.2vmin}
+.opt{padding:2.4vmin 3vmin;border-radius:24px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(8px)}
+.opt label{display:block;font-weight:800;font-size:clamp(1.1rem,2.2vw,1.6rem);margin-bottom:1.2vmin}
+.seg{display:flex;flex-wrap:wrap;gap:1vmin}
+.seg button{padding:.5em 1.1em;border-radius:99px;border:2px solid rgba(255,255,255,.3);background:transparent;color:var(--ink);font-weight:700;font-size:clamp(1rem,2vw,1.4rem);transition:.2s}
+.seg button.act{background:var(--mint);color:var(--bg);border-color:var(--mint);transform:scale(1.06)}
+.sw{width:3.2rem;height:3.2rem;border-radius:50%!important;padding:0!important}
+.step{display:flex;gap:2vmin;align-items:center;font-size:clamp(1.1rem,2.3vw,1.7rem);font-weight:500}
+.step i{font-style:normal;font-size:clamp(2.2rem,5vw,3.6rem)}
+/* slides */
+.age{font-weight:800;font-size:clamp(6rem,22vh,14rem);line-height:.85;letter-spacing:-.06em;color:var(--sun);text-shadow:0 0 80px rgba(255,210,63,.45)}
+.chips{display:flex;flex-wrap:wrap;gap:1.2vmin;justify-content:center;margin-top:3vh}
+.chip{padding:.45em 1.1em;border-radius:99px;border:2px solid var(--mint);color:var(--mint);font-weight:800;font-size:clamp(1rem,2.4vw,1.8rem)}
+.on .chip,.on .card{animation:pop .7s both}.chip:nth-child(2),.card:nth-child(2){animation-delay:.15s!important}.chip:nth-child(3),.card:nth-child(3){animation-delay:.3s!important}
+.flag{font-size:clamp(6rem,22vw,16rem);animation:wave 3s ease-in-out infinite;transform-origin:20% 90%}
+@keyframes wave{50%{transform:rotate(-8deg) scale(1.05)}}
+.frame{position:relative;width:min(88vw,125vh*.9);aspect-ratio:4/3;max-height:60vh;margin-top:3vh;border-radius:28px;overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.55),0 0 0 6px rgba(255,255,255,.14);background:linear-gradient(135deg,var(--bg2),var(--pink));display:flex;align-items:center;justify-content:center;font-size:clamp(4rem,12vw,9rem)}
 .frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.15);transition:transform 6s ease-out}
-.s4.on .frame img{transform:scale(1)}
-.s4 h2{font-size:clamp(2rem,5.5vw,4.5rem)}
-.fav{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2vmin;width:min(92vw,1100px);margin-top:4vh}
-.card{padding:3vmin;border-radius:24px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(8px)}
-.card b{display:block;font-size:clamp(2.5rem,6vw,4.5rem)}
-.card span{font-size:clamp(1.1rem,2.4vw,1.8rem);font-weight:500}
-.s5.on .card{animation:pop .7s both}.s5 .card:nth-child(2){animation-delay:.15s}.s5 .card:nth-child(3){animation-delay:.3s}
-nav{position:fixed;bottom:2.5vh;left:0;right:0;z-index:5;display:flex;justify-content:center;align-items:center;gap:2vw}
-nav button{width:clamp(52px,7vmin,72px);height:clamp(52px,7vmin,72px);border-radius:50%;border:0;background:var(--sun);color:var(--bg);font-size:1.8rem;font-weight:800;cursor:pointer;transition:transform .2s}
-nav button:hover{transform:scale(1.12)}nav button:focus-visible{outline:4px solid var(--mint);outline-offset:3px}
-#count{font-weight:800;font-size:1.2rem;min-width:4em;text-align:center}
-#bar{position:fixed;top:0;left:0;height:8px;background:linear-gradient(90deg,var(--sun),var(--pink));z-index:6;transition:width .6s;width:0}
+.on .frame img{transform:scale(1)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2.4vmin;width:min(94vw,1000px);margin-top:4vh}
+.card{padding:3vmin;border-radius:28px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(8px)}
+.card b{display:block;font-size:clamp(4rem,11vw,8rem);animation:bounce 2.2s ease-in-out infinite}
+.card:nth-child(2) b{animation-delay:-1s}
+.card span{font-size:clamp(1.3rem,3vw,2.2rem);font-weight:800}
+.vs{align-self:center;font-weight:800;font-size:clamp(1.5rem,4vw,3rem);color:var(--pink)}
+.course{position:relative;width:min(90vw,760px);height:min(26vh,220px);margin-top:3vh;border-radius:28px;background:linear-gradient(#5ecb6b,#2f9e4a);overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.hole{position:absolute;right:12%;bottom:22%;width:44px;height:16px;border-radius:50%;background:#14301d}
+.flagp{position:absolute;right:calc(12% + 20px);bottom:calc(22% + 8px);font-size:clamp(2.5rem,6vw,4.5rem);line-height:1}
+.ball{position:absolute;left:6%;bottom:22%;width:26px;height:26px;border-radius:50%;background:#fff;box-shadow:inset -4px -4px 0 #ddd}
+.on .ball{animation:shot 3.2s .4s cubic-bezier(.3,.6,.5,1) infinite}
+@keyframes shot{0%{left:6%;bottom:22%;opacity:1}55%{left:48%;bottom:80%}85%{left:calc(88% - 26px);bottom:22%;opacity:1}95%,100%{left:calc(88% - 26px);bottom:10%;opacity:0}}
+.fam{font-size:clamp(5rem,16vw,12rem);animation:bounce 2s ease-in-out infinite}
+.hearts span{position:fixed;font-size:2rem;animation:rise 7s linear infinite;bottom:-8vh;opacity:.8}
+/* hud */
+#hud{position:fixed;bottom:2vh;left:0;right:0;z-index:5;display:none;justify-content:center;align-items:center;gap:2vw}
+#hud.on{display:flex}
+#hud .btn{padding:0;width:clamp(48px,7vmin,68px);height:clamp(48px,7vmin,68px);font-size:1.6rem;box-shadow:none}
+#dots{display:flex;gap:8px}
+#dots i{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.3);transition:.4s}
+#dots i.act{background:var(--sun);width:34px;border-radius:99px}
+#bar{position:fixed;top:0;left:0;height:8px;background:linear-gradient(90deg,var(--sun),var(--pink));z-index:6;width:0;transition:width .6s}
+#confetti i{position:fixed;top:-5vh;width:12px;height:18px;animation:fall linear forwards;z-index:4}
+@keyframes fall{to{transform:translateY(112vh) rotate(720deg)}}
+#loader{position:fixed;inset:0;z-index:20;background:#000;display:none;flex-direction:column;justify-content:center;align-items:center;gap:2.4vh;padding:0 7vw}
+#loader.on{display:flex}
+#loader .lt{font-weight:800;font-size:clamp(2.2rem,8vw,6rem);letter-spacing:-.03em;animation:blink 1.4s ease-in-out infinite}
+@keyframes blink{50%{opacity:.45}}
+#loader .track{width:min(88vw,950px);height:clamp(26px,5vh,46px);border-radius:99px;background:#161616;border:2px solid #3a3a3a;overflow:hidden}
+#loader .fill{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--sun),var(--pink),var(--mint),var(--sun));background-size:200% 100%;animation:run 1.2s linear infinite}
+@keyframes run{to{background-position:-200% 0}}
+#loader .pct{font-size:clamp(1.1rem,2.8vw,2rem);font-weight:500;opacity:.85}
+#close{position:fixed;top:2vh;z-index:30;display:none;width:clamp(48px,7vmin,66px);height:clamp(48px,7vmin,66px);border-radius:50%;border:0;background:rgba(0,0,0,.5);color:#fff;font-size:1.6rem;font-weight:800;backdrop-filter:blur(6px);transition:.3s}
+#close.on{display:block}
+body[data-close=left] #close{left:2vw}body[data-close=right] #close{right:2vw}
+#close:hover{background:var(--pink);transform:rotate(90deg) scale(1.1)}
+.meBox{position:relative;display:flex;justify-content:center;align-items:center}
+.meBox::before{content:"";position:absolute;width:75%;aspect-ratio:1;border-radius:50%;background:conic-gradient(var(--sun),var(--pink),var(--mint),var(--sun));filter:blur(30px);opacity:.6;animation:spin 8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.me{position:relative;height:clamp(170px,34vh,340px);width:auto;filter:drop-shadow(0 18px 28px rgba(0,0,0,.5));animation:bob 3s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-2vh) rotate(1.5deg)}}
+.shine{background:linear-gradient(90deg,var(--sun),var(--pink),var(--mint),var(--pink),var(--sun));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 3s ease-in-out infinite alternate}
+@keyframes shine{to{background-position:100% 0}}
+.flagsvg{width:clamp(200px,34vw,460px);filter:drop-shadow(0 20px 30px rgba(0,0,0,.5));border-radius:10px;animation:wave 3s ease-in-out infinite;transform-origin:20% 90%}
+.yo span:nth-child(3){animation-delay:.4s!important;color:var(--pink)}
+.yo{font-size:clamp(4rem,20vw,17rem)}
+.me.big{height:clamp(240px,52vh,600px)}
+.gif{height:clamp(120px,24vh,270px);width:auto;max-width:90vw;border-radius:24px;border:4px solid rgba(255,255,255,.25);box-shadow:0 18px 50px rgba(0,0,0,.5);object-fit:cover;animation:bob 3.4s ease-in-out infinite}
+.gif.sm{height:clamp(90px,19vh,200px);max-width:100%}
+.duo{display:flex;flex-wrap:wrap;gap:3vmin;align-items:center;justify-content:center;margin-top:3vh}
+.duo .course{width:min(88vw,500px);height:min(24vh,210px);margin-top:0}
+.duo .fam{font-size:clamp(4rem,11vw,9rem)}
+.me.sm{height:clamp(110px,20vh,230px)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01s!important}}
 </style>
 </head>
-<body>
+<body data-theme="night">
 <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
-<div id="bar"></div>
+<div id="emojis"></div><div id="confetti"></div><div id="bar"></div>
+<button id="close" aria-label="Close">✕</button>
+<div id="loader"><div class="lt" data-t="ld">Loading...</div><div class="track"><div class="fill"></div></div><div class="pct">0%</div></div>
 
-<section class="slide s1 on">
-  <h1><span>Yo</span> <span>soy</span> <span>yo</span></h1>
-  <div class="hello">¡Hola! Me llamo <span id="nombre">[TU NOMBRE]</span></div>
-</section>
-
-<section class="slide s2">
-  <p>Tengo</p>
-  <div class="age" id="edad">0</div>
-  <h2>años</h2>
-  <div class="chips"><span class="chip">Curioso/a</span><span class="chip">Divertido/a</span><span class="chip">Con muchas ideas</span></div>
-</section>
-
-<section class="slide s3">
-  <div class="pin">📍</div>
-  <h2>Soy de <span class="sun" id="ciudad">[TU CIUDAD]</span></h2>
-  <p>Vivo en <span class="pink" id="pais">[TU PAÍS]</span>. ¡Es mi lugar favorito del mundo!</p>
-</section>
-
-<section class="slide s4">
-  <h2>Así es <span class="mint">mi casa</span> 🏡</h2>
-  <div class="frame">🏠<img src="https://p.rdcpix.com/v02/lbc78b744-m0rd-w960_h720.webp" alt="Foto de mi casa" onerror="this.remove()"></div>
-</section>
-
-<section class="slide s5">
-  <h2>Lo que más me gusta</h2>
-  <div class="fav">
-    <div class="card"><b>🎮</b><span id="f1">Mi pasatiempo</span></div>
-    <div class="card"><b>🍕</b><span id="f2">Mi comida favorita</span></div>
-    <div class="card"><b>⚽</b><span id="f3">Mi deporte o juego</span></div>
+<!-- MENU -->
+<section class="screen on" id="menu">
+  <div class="meBox"><img class="me" src="https://github.com/SPANISHSPANISH/Espanol/blob/main/IMG_1804-removebg-preview.png?raw=true" alt="Chris" onerror="this.parentNode.innerHTML='<div class=logo>👋</div>'"></div>
+  <h1 class="title"><span>Chris</span> <span data-t="word">Presentation</span></h1>
+  <p data-t="tag">A fun, animated way to get to know me!</p>
+  <div class="row">
+    <button class="btn big" id="start" data-t="start">▶ Start Presentation</button>
+    <button class="btn ghost" id="openSet" data-t="settings">⚙️ Settings</button>
+    <button class="btn ghost" id="openHow" data-t="how">❓ How it works</button>
   </div>
 </section>
 
-<section class="slide s6">
-  <h1 class="sun">¡Gracias!</h1>
-  <p>Gracias por conocerme, primo/a. <span class="pink">¡Ahora cuéntame de ti!</span> 💛</p>
+<!-- SETTINGS -->
+<section class="screen" id="settings">
+  <h2 data-t="settings">⚙️ Settings</h2>
+  <div class="panel">
+    <div class="opt"><label data-t="lLang">🌎 Presentation language</label>
+      <div class="seg" data-key="lang"><button data-v="en">🇺🇸 English</button><button data-v="es">🇲🇽 Español</button></div></div>
+    <div class="opt"><label data-t="lMode">🎬 How do you want to present?</label>
+      <div class="seg" data-key="mode"><button data-v="click" data-t="mClick">👆 I click next</button><button data-v="auto" data-t="mAuto">⏱️ Auto-play</button></div></div>
+    <div class="opt"><label data-t="lSpeed">⚡ Auto-play speed</label>
+      <div class="seg" data-key="speed"><button data-v="13" data-t="slow">🐢 Slow</button><button data-v="9" data-t="normal">🚶 Normal</button><button data-v="5" data-t="fast">🚀 Fast</button></div></div>
+    <div class="opt"><label data-t="lTheme">🎨 Color theme</label>
+      <div class="seg" data-key="theme"><button class="sw" data-v="night" style="background:#1b2a6b" aria-label="Night"></button><button class="sw" data-v="sunset" style="background:#ff6b6b" aria-label="Sunset"></button><button class="sw" data-v="ocean" style="background:#4facfe" aria-label="Ocean"></button><button class="sw" data-v="forest" style="background:#7dffb0" aria-label="Forest"></button></div></div>
+    <div class="opt"><label data-t="lClose">❌ Close button position</label>
+      <div class="seg" data-key="close"><button data-v="left" data-t="left">⬅ Left</button><button data-v="right" data-t="right">Right ➡</button></div></div>
+    <div class="opt"><label data-t="lFx">✨ Floating emojis and effects</label>
+      <div class="seg" data-key="fx"><button data-v="on" data-t="on">✅ On</button><button data-v="off" data-t="off">🚫 Off</button></div></div>
+  </div>
+  <div class="row"><button class="btn back" data-t="back">⬅ Back</button></div>
 </section>
 
-<nav><button id="prev" aria-label="Anterior">‹</button><div id="count"></div><button id="next" aria-label="Siguiente">›</button></nav>
+<!-- HOW -->
+<section class="screen" id="how">
+  <h2 data-t="how">❓ How it works</h2>
+  <div class="panel">
+    <div class="opt step"><i>1️⃣</i><span data-t="h1">Pick your language and style in Settings.</span></div>
+    <div class="opt step"><i>2️⃣</i><span data-t="h2">Press Start Presentation. It starts in English by default.</span></div>
+    <div class="opt step"><i>3️⃣</i><span data-t="h3">Click the arrows, press the keyboard arrows or Space, or swipe on a phone. Auto-play does it for you!</span></div>
+    <div class="opt step"><i>🖥️</i><span data-t="h4">Press F for full screen and Esc to go back to the menu.</span></div>
+  </div>
+  <div class="row"><button class="btn back" data-t="back">⬅ Back</button></div>
+</section>
+
+<!-- SLIDES -->
+<section class="slide" data-s data-first>
+  <h1 class="title yo"><span>Yo</span> <span>soy</span> <span>yo</span></h1>
+  <p class="sun">Chris Presentation 🎤✨</p>
+</section>
+<section class="slide" data-s>
+  <h1 class="shine" data-t="s1">Hi, I'm Chris!</h1>
+  <p data-t="s1p">Welcome to my presentation. Get ready to meet me!</p>
+  <img class="gif" data-gif="hi" alt="Hi">
+</section>
+<section class="slide" data-s>
+  <h2 data-t="sLook">Así me veo yo 😎</h2>
+  <div class="meBox"><img class="me big" src="https://github.com/SPANISHSPANISH/Espanol/blob/main/IMG_1804-removebg-preview.png?raw=true" alt="Chris" onerror="this.parentNode.innerHTML='<div class=fam>🙂</div>'"></div>
+  <p data-t="sLookP">¡Sí, ese soy yo! Mucho gusto.</p>
+</section>
+<section class="slide" data-s data-age>
+  <div class="meBox"><img class="me sm" src="https://github.com/SPANISHSPANISH/Espanol/blob/main/IMG_1804-removebg-preview.png?raw=true" alt="Chris" onerror="this.parentNode.remove()"></div>
+  <p data-t="s2a">I am</p><div class="age" id="age">0</div><h2 data-t="s2b">years old 🎂</h2>
+  <div class="chips"><span class="chip" data-t="c1">😄 Fun</span><span class="chip" data-t="c2">🧠 Curious</span><span class="chip" data-t="c3">💡 Full of ideas</span></div>
+</section>
+<section class="slide" data-s>
+  <div class="duo"><svg class="flagsvg" viewBox="0 0 190 100" role="img" aria-label="USA flag"><rect width="190" height="100" fill="#b22234"/><g id="stripes" fill="#fff"></g><rect width="76" height="53.85" fill="#3c3b6e"/><g id="stars" fill="#fff"></g></svg><img class="gif" data-gif="usa" alt="USA"></div>
+  <h2 data-t="s3">I'm from <span class="sun">America</span></h2>
+  <p data-t="s3p">I live in the United States, and it's my favorite place in the whole world!</p>
+</section>
+<section class="slide" data-s>
+  <h2 data-t="s4">This is <span class="mint">my house</span> 🏡</h2>
+  <div class="frame">🏠<img src="https://p.rdcpix.com/v02/lbc78b744-m0rd-w960_h720.webp" alt="My house" onerror="this.remove()"></div>
+</section>
+<section class="slide" data-s>
+  <h2 data-t="s5">My favorite food 😋</h2>
+  <div class="cards">
+    <div class="card"><b>🍕</b><span data-t="pizza">Pizza</span></div>
+    <div class="vs"><img class="gif sm" data-gif="taco" alt="Tacos"></div>
+    <div class="card"><b>🌮</b><span data-t="tacos">Tacos</span></div>
+  </div>
+  <p data-t="s5p">I can't pick just one!</p>
+</section>
+<section class="slide" data-s>
+  <h2 data-t="s6">I love playing <span class="sun">golf</span> ⛳</h2>
+  <div class="duo"><div class="course"><div class="hole"></div><div class="flagp">🚩</div><div class="ball"></div></div><img class="gif" data-gif="golf" alt="Golf"></div>
+  <p data-t="s6p">Every swing is a new chance for a hole-in-one! 🏌️</p>
+</section>
+<section class="slide" data-s>
+  <div class="duo"><div class="fam">👨‍👩‍👧‍👦</div><img class="gif" data-gif="fam" alt="Family"></div>
+  <h2 data-t="s7">Family is <span class="pink">everything</span> 💛</h2>
+  <p data-t="s7p">I enjoy spending time with my family. They make every day better.</p>
+</section>
+<section class="slide" data-s data-end>
+  <img class="gif" data-gif="hi" alt="Bye">'"></div>
+  <h1 class="shine" data-t="s8">Thank you!</h1>
+  <p data-t="s8p">Now it's your turn. Tell me all about you! 🎉</p>
+  <div class="row"><button class="btn" id="again" data-t="again">🔁 Watch again</button><button class="btn ghost back" data-t="menu">🏠 Menu</button></div>
+</section>
+
+<div id="hud"><button class="btn" id="prev" aria-label="Previous">‹</button><div id="dots"></div><button class="btn" id="next" aria-label="Next">›</button><button class="btn ghost" id="fs" aria-label="Fullscreen">⛶</button></div>
 
 <script>
-/* ✏️ EDITA AQUÍ TUS DATOS */
-const DATOS={nombre:"[TU NOMBRE]",edad:12,ciudad:"[TU CIUDAD]",pais:"[TU PAÍS]",
- f1:"Mi pasatiempo",f2:"Mi comida favorita",f3:"Mi deporte o juego"};
-["nombre","ciudad","pais","f1","f2","f3"].forEach(k=>document.getElementById(k).textContent=DATOS[k]);
-
-const slides=[...document.querySelectorAll(".slide")];let i=0,timer;
-function countUp(){const el=document.getElementById("edad");clearInterval(timer);let n=0;el.textContent=0;
- timer=setInterval(()=>{n++;el.textContent=n;if(n>=DATOS.edad)clearInterval(timer)},90)}
-function go(n){i=Math.max(0,Math.min(slides.length-1,n));
- slides.forEach((s,k)=>s.classList.toggle("on",k===i));
- document.getElementById("count").textContent=(i+1)+" / "+slides.length;
- document.getElementById("bar").style.width=((i+1)/slides.length*100)+"%";
- if(i===1)countUp()}
-document.getElementById("next").onclick=()=>go(i+1);
-document.getElementById("prev").onclick=()=>go(i-1);
-addEventListener("keydown",e=>{if(["ArrowRight"," ","PageDown"].includes(e.key))go(i+1);if(["ArrowLeft","PageUp"].includes(e.key))go(i-1);if(e.key==="f")document.documentElement.requestFullscreen?.()});
+const AGE=12; /* ✏️ change your age here */
+const T={
+en:{word:"Presentation",tag:"A fun, animated way to get to know me!",start:"▶ Start Presentation",settings:"⚙️ Settings",how:"❓ How it works",
+lLang:"🌎 Presentation language",lMode:"🎬 How do you want to present?",mClick:"👆 I click next",mAuto:"⏱️ Auto-play",lSpeed:"⚡ Auto-play speed",slow:"🐢 Slow",normal:"🚶 Normal",fast:"🚀 Fast",lTheme:"🎨 Color theme",lFx:"✨ Floating emojis and effects",on:"✅ On",off:"🚫 Off",back:"⬅ Back",
+h1:"Pick your language and style in Settings.",h2:"Press Start Presentation. It starts in English by default.",h3:"Click the arrows, press the keyboard arrows or Space, or swipe on a phone. Auto-play does it for you!",h4:"Press F for full screen and Esc to go back to the menu.",
+s1:"Hi, I'm Chris!",s1p:"Welcome to my presentation. Get ready to meet me!",s2a:"I am",s2b:"years old 🎂",c1:"😄 Fun",c2:"🧠 Curious",c3:"💡 Full of ideas",
+s3:"I'm from <span class='sun'>America</span>",s3p:"I live in the United States, and it's my favorite place in the whole world!",
+s4:"This is <span class='mint'>my house</span> 🏡",s5:"My favorite food 😋",pizza:"Pizza",tacos:"Tacos",s5p:"I can't pick just one!",
+s6:"I love playing <span class='sun'>golf</span> ⛳",s6p:"Every swing is a new chance for a hole-in-one! 🏌️",
+s7:"Family is <span class='pink'>everything</span> 💛",s7p:"I enjoy spending time with my family. They make every day better.",
+s8:"Thank you!",s8p:"Now it's your turn. Tell me all about you! 🎉",again:"🔁 Watch again",menu:"🏠 Menu",lClose:"❌ Close button position",left:"⬅ Left",right:"Right ➡",ld:"Loading...",ld1:"Getting ready…",ld2:"Loading the fun…",ld3:"Almost there!",sLook:"This is what I look like 😎",sLookP:"Yep, that's me! Nice to meet you."},
+es:{word:"Presentación",tag:"¡Una forma divertida y animada de conocerme!",start:"▶ Iniciar presentación",settings:"⚙️ Ajustes",how:"❓ Cómo funciona",
+lLang:"🌎 Idioma de la presentación",lMode:"🎬 ¿Cómo quieres presentar?",mClick:"👆 Yo hago clic",mAuto:"⏱️ Automático",lSpeed:"⚡ Velocidad automática",slow:"🐢 Lenta",normal:"🚶 Normal",fast:"🚀 Rápida",lTheme:"🎨 Color del tema",lFx:"✨ Emojis flotantes y efectos",on:"✅ Sí",off:"🚫 No",back:"⬅ Volver",
+h1:"Elige tu idioma y tu estilo en Ajustes.",h2:"Presiona Iniciar presentación. Por defecto empieza en inglés.",h3:"Haz clic en las flechas, usa las flechas del teclado o la barra espaciadora, o desliza el dedo en el celular. ¡El modo automático lo hace por ti!",h4:"Presiona F para pantalla completa y Esc para volver al menú.",
+s1:"¡Hola, soy Chris!",s1p:"Bienvenidos a mi presentación. ¡Prepárense para conocerme!",s2a:"Tengo",s2b:"años 🎂",c1:"😄 Divertido",c2:"🧠 Curioso",c3:"💡 Lleno de ideas",
+s3:"Soy de <span class='sun'>Estados Unidos</span>",s3p:"Vivo en Estados Unidos, ¡y es mi lugar favorito de todo el mundo!",
+s4:"Esta es <span class='mint'>mi casa</span> 🏡",s5:"Mi comida favorita 😋",pizza:"Pizza",tacos:"Tacos",s5p:"¡No puedo elegir solo una!",
+s6:"Me encanta jugar <span class='sun'>golf</span> ⛳",s6p:"¡Cada golpe es una nueva oportunidad de hacer un hoyo en uno! 🏌️",
+s7:"La familia es <span class='pink'>todo</span> 💛",s7p:"Disfruto pasar tiempo con mi familia. Ellos hacen cada día mejor.",
+s8:"¡Gracias!",s8p:"Ahora te toca a ti. ¡Cuéntame todo sobre ti! 🎉",again:"🔁 Ver otra vez",menu:"🏠 Menú",lClose:"❌ Posición del botón de cerrar",left:"⬅ Izquierda",right:"Derecha ➡",ld:"Cargando...",ld1:"Preparando todo…",ld2:"Cargando la diversión…",ld3:"¡Casi listo!",sLook:"Así me veo yo 😎",sLookP:"¡Sí, ese soy yo! Mucho gusto."}};
+const S={lang:"es",mode:"click",speed:"9",theme:"night",fx:"on",close:"right"};
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const slides=$$("[data-s]");let i=0,auto,cnt,ld;
+function lang(){const d=T[S.lang];document.documentElement.lang=S.lang;
+ $$("[data-t]").forEach(e=>{const v=d[e.dataset.t];if(v!==undefined)e.innerHTML=v})}
+function sync(){$$(".seg").forEach(g=>$$(`.seg[data-key=${g.dataset.key}] button`).forEach(b=>b.classList.toggle("act",b.dataset.v===S[g.dataset.key])));
+ document.body.dataset.theme=S.theme;document.body.dataset.close=S.close;document.body.classList.toggle("nofx",S.fx==="off");lang()}
+$$(".seg button").forEach(b=>b.onclick=()=>{S[b.parentElement.dataset.key]=b.dataset.v;sync()});
+function show(id){$$(".screen").forEach(s=>s.classList.toggle("on",s.id===id));slides.forEach(s=>s.classList.remove("on"));$("#hud").classList.remove("on");$("#close").classList.remove("on");$("#loader").classList.remove("on");$("#bar").style.width=0;clearInterval(auto);clearTimeout(ld)}
+$("#openSet").onclick=()=>show("settings");$("#openHow").onclick=()=>show("how");
+$$(".back").forEach(b=>b.onclick=()=>{show("menu")});
+/* emojis */
+const E=["⛳","🍕","🌮","🏌️","👨‍👩‍👧‍👦","⭐","🇺🇸","💛","🏡","🎉"];
+$("#emojis").innerHTML=Array.from({length:16},(_,k)=>`<span style="left:${Math.random()*96}vw;font-size:${1.5+Math.random()*2.5}rem;animation-duration:${14+Math.random()*14}s;animation-delay:${-Math.random()*25}s">${E[k%E.length]}</span>`).join("");
+$("#dots").innerHTML=slides.map(()=>"<i></i>").join("");
+function confetti(){if(S.fx==="off")return;const c=["#ffd23f","#ff5d8f","#5ef2c8","#fff","#4facfe"];
+ $("#confetti").innerHTML=Array.from({length:70},()=>`<i style="left:${Math.random()*100}vw;background:${c[Math.floor(Math.random()*5)]};animation-duration:${2.5+Math.random()*3}s;animation-delay:${Math.random()*1.5}s"></i>`).join("")}
+function countUp(){const el=$("#age");clearInterval(cnt);let n=0;el.textContent=0;cnt=setInterval(()=>{el.textContent=++n;if(n>=AGE)clearInterval(cnt)},90)}
+function go(n){i=Math.max(0,Math.min(slides.length-1,n));slides.forEach((s,k)=>s.classList.toggle("on",k===i));
+ $$("#dots i").forEach((d,k)=>d.classList.toggle("act",k===i));$("#bar").style.width=((i+1)/slides.length*100)+"%";
+ $("#confetti").innerHTML="";if(slides[i].hasAttribute("data-age"))countUp();if(slides[i].hasAttribute("data-end"))confetti()}
+function run(){$$(".screen").forEach(s=>s.classList.remove("on"));$("#loader").classList.remove("on");$("#hud").classList.add("on");$("#close").classList.add("on");go(0);clearInterval(auto);
+ if(S.mode==="auto")auto=setInterval(()=>{if(i>=slides.length-1)clearInterval(auto);else go(i+1)},S.speed*1000)}
+function start(){clearInterval(auto);clearTimeout(ld);$$(".screen").forEach(s=>s.classList.remove("on"));slides.forEach(s=>s.classList.remove("on"));
+ $("#loader").classList.add("on");$("#close").classList.add("on");
+ const dur=4000+Math.random()*4000,t0=performance.now(),d=T[S.lang],f=$("#loader .fill"),p=$("#loader .pct");
+ (function tick(){const r=Math.min(1,(performance.now()-t0)/dur);f.style.width=(r*100)+"%";p.textContent=Math.round(r*100)+"% · "+d[r<.35?"ld1":r<.75?"ld2":"ld3"];
+  if(r<1)ld=setTimeout(tick,60);else ld=setTimeout(run,350)})()}
+$("#close").onclick=()=>show("menu");
+$("#start").onclick=start;$("#again").onclick=run;$("#next").onclick=()=>go(i+1);$("#prev").onclick=()=>go(i-1);
+$("#fs").onclick=()=>document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen?.();
+addEventListener("keydown",e=>{const live=$("#hud").classList.contains("on");
+ if(e.key==="Escape"&&(live||$("#loader").classList.contains("on")))show("menu");if(!live)return;
+ if(["ArrowRight"," ","PageDown"].includes(e.key))go(i+1);if(["ArrowLeft","PageUp"].includes(e.key))go(i-1);if(e.key==="f"||e.key==="F")$("#fs").click()});
 let x0;addEventListener("touchstart",e=>x0=e.touches[0].clientX);
-addEventListener("touchend",e=>{const d=e.changedTouches[0].clientX-x0;if(Math.abs(d)>50)go(i+(d<0?1:-1))});
-go(0);
+addEventListener("touchend",e=>{if(!$("#hud").classList.contains("on"))return;const d=e.changedTouches[0].clientX-x0;if(Math.abs(d)>50)go(i+(d<0?1:-1))});
+const GIF={golf:"https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWNqZTA3dGd5cnB3M2owYXEzdWg0MnhqM3Y3MTdwZXFwNGVjbDNnMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/wt1jBNPXveEx2/giphy.gif",
+taco:"https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZnVsOGw2ODMwM2Y2ZDVxanpuYmVsbTFnemp3M2xtcmh6NGJ6bjgzYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/266UxnrJ54aPPDihkC/giphy.gif",
+usa:"https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdDF6Zmh2cmNyYWJ6ZWFxZzl3MDZwemFtbzJzcG52d3F6OHp5bWJ2ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7Wiozceem6Vt2eMFxO/giphy.gif",
+fam:"https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z0amcxd2VxaW9oN3V3d3R6cWR4aHY4MXJ6Mmx1cGJjYnk3eHJlbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/U71iqcuy90EGAkn9B7/giphy.gif",
+hi:"https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjBncHF5YWoya2NlbGw3dzh6Zmo5aTU2eHVuaHBhcjZidXp4YzQxOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/y4nk5bgwpWL6T5Ax9y/giphy.gif"};
+$$("[data-gif]").forEach(g=>{g.src=GIF[g.dataset.gif];g.onerror=()=>g.remove()});
+let sh="";for(let k=1;k<13;k+=2)sh+=`<rect y="${k*7.692}" width="190" height="7.692"/>`;$("#stripes").innerHTML=sh;
+let st="";for(let r=0;r<9;r++){const n=r%2?5:6;for(let c=0;c<n;c++)st+=`<circle cx="${(r%2?14:8)+c*12}" cy="${5+r*5.6}" r="1.7"/>`}$("#stars").innerHTML=st;
+sync();
 </script>
 </body>
 </html>
